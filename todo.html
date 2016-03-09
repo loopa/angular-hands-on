@@ -1,0 +1,25 @@
+<form name="todoForm" class="form-horizontal" novalidate>
+    <p ng-show="todoForm.todoName.$invalid">必須です!</p>
+    <div class="form-group">
+        <label class="col-xs-2" for="name">Todo</label>
+        <div class="col-xs-10">
+            <div class="input-group">
+                <input class="form-control" type="text" name="todo" id="name" ng-model="app.todo.name" required>
+                <span class="input-group-btn">
+                       <button class="btn btn-primary" ng-click="app.clickButton()" ng-disabled="todoForm.$invalid">add!!</button>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-xs-2" for="date">Date</label>
+        <div class="col-xs-3">
+            <a class="btn btn-large btn-block btn-default" ng-click="app.open()" uib-datepicker-popup="{{app.format}}" ng-model="app.dt"
+            is-open="app.popup.opened" datepicker-options="app.dateOptions" ng-required="true"  alt-input-formats="app.altInputFormats"
+            role="button">{{app.dt | date:'yyyy/MM/dd'}}</a>
+        </div>
+    </div>
+
+</form>
+
+<todo-list list="app.list"></todo-list>

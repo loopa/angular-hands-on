@@ -1,0 +1,31 @@
+<div class="form-group">
+    <label for="search">Search : {{filtered.length}} / {{todos.list.length}}</label>
+    <input class="form-control" type="text" ng-model="todos.search">
+</div>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="item in filtered =(todos.list | filter: todos.search | orderBy: '-date' )">
+            <td>
+                <input type="checkbox" ng-click="todos.clickList(item)">
+            </td>
+            <td ng-class="{done: item.done}">
+                {{item.name}}
+            </td>
+            <td ng-class="{done:item.done}">
+                {{item.endDate | date:'yyyy/MM/dd'}}
+            </td>
+            <td ng-class="{done: item.done}">
+                {{todos.countDown(item.date,item.endDate)}}
+                <!--{{item.date - item.endDate | date:'yyyy/mm/dd HH:mm:ss'}}-->
+            </td>
+            <td>
+                <a class="btn btn-danger" ng-click="todos.clickDeleteButton(item)" role="button" ng-show="item.done">x</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
